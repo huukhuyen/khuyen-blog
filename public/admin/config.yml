@@ -1,0 +1,71 @@
+backend:
+  name: github
+  repo: huukhuyen/khuyen-blog
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+  - &post-collection
+    name: coding
+    label: Chia sẻ coding
+    folder: src/content/posts/coding
+    create: true
+    delete: true
+    extension: md
+    format: yaml-frontmatter
+    identifier_field: title
+    slug: '{{fields.slug}}'
+    summary: '{{title}} — {{publishedAt | date("YYYY-MM-DD")}}'
+    fields:
+      - { label: Tiêu đề, name: title, widget: string }
+      - { label: Đường dẫn, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Chỉ dùng chữ thường không dấu, số và dấu gạch ngang.'] }
+      - { label: Chuyên mục, name: category, widget: hidden, default: coding }
+      - { label: Ngày đăng, name: publishedAt, widget: datetime, default: '{{now}}', date_format: YYYY-MM-DD, picker_utc: true }
+      - { label: Mô tả preview, name: summary, widget: text }
+      - { label: Ảnh đại diện, name: featuredImage, widget: image, required: false }
+      - { label: Mô tả ảnh, name: featuredImageAlt, widget: string, required: false }
+      - { label: Legacy path, name: legacyPath, widget: hidden, default: '', required: false }
+      - { label: Legacy aliases, name: legacyAliases, widget: hidden, default: [], required: false }
+      - { label: Nguồn, name: source, widget: hidden, default: original }
+      - { label: Embeds, name: embeds, widget: hidden, default: [], required: false }
+      - { label: Nội dung, name: body, widget: markdown }
+
+  - <<: *post-collection
+    name: nhung-dieu-dang-nho
+    label: Chuyện cuộc sống
+    folder: src/content/posts/nhung-dieu-dang-nho
+    fields:
+      - { label: Tiêu đề, name: title, widget: string }
+      - { label: Đường dẫn, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Chỉ dùng chữ thường không dấu, số và dấu gạch ngang.'] }
+      - { label: Chuyên mục, name: category, widget: hidden, default: nhung-dieu-dang-nho }
+      - { label: Ngày đăng, name: publishedAt, widget: datetime, default: '{{now}}', date_format: YYYY-MM-DD, picker_utc: true }
+      - { label: Mô tả preview, name: summary, widget: text }
+      - { label: Ảnh đại diện, name: featuredImage, widget: image, required: false }
+      - { label: Mô tả ảnh, name: featuredImageAlt, widget: string, required: false }
+      - { label: Legacy path, name: legacyPath, widget: hidden, default: '', required: false }
+      - { label: Legacy aliases, name: legacyAliases, widget: hidden, default: [], required: false }
+      - { label: Nguồn, name: source, widget: hidden, default: original }
+      - { label: Embeds, name: embeds, widget: hidden, default: [], required: false }
+      - { label: Nội dung, name: body, widget: markdown }
+
+  - <<: *post-collection
+    name: suu-tam
+    label: Sưu tầm
+    folder: src/content/posts/suu-tam
+    fields:
+      - { label: Tiêu đề, name: title, widget: string }
+      - { label: Đường dẫn, name: slug, widget: string, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Chỉ dùng chữ thường không dấu, số và dấu gạch ngang.'] }
+      - { label: Chuyên mục, name: category, widget: hidden, default: suu-tam }
+      - { label: Ngày đăng, name: publishedAt, widget: datetime, default: '{{now}}', date_format: YYYY-MM-DD, picker_utc: true }
+      - { label: Mô tả preview, name: summary, widget: text }
+      - { label: Ảnh đại diện, name: featuredImage, widget: image, required: false }
+      - { label: Mô tả ảnh, name: featuredImageAlt, widget: string, required: false }
+      - { label: Legacy path, name: legacyPath, widget: hidden, default: '', required: false }
+      - { label: Legacy aliases, name: legacyAliases, widget: hidden, default: [], required: false }
+      - { label: Nguồn, name: source, widget: hidden, default: curated }
+      - { label: Embeds, name: embeds, widget: hidden, default: [], required: false }
+      - { label: Nội dung, name: body, widget: markdown }
